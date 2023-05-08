@@ -11,7 +11,8 @@ export default interface IUsersDTO {
   _id: string;
   name: string;
   email: string;
-  trips: ITrips[];
+  password: string;
+  trips?: ITrips[];
   created_at: Date;
   updated_at: Date;
 }
@@ -20,7 +21,8 @@ export interface ICreateUsersDTO {
   _id: string;
   name: string;
   email: string;
-  trips: ITrips[];
+  password: string;
+  trips?: ITrips[];
   created_at: Date;
   updated_at: Date;
 }
