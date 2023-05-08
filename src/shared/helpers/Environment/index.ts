@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 
 export class Environment {
   public static getEnv<T>(name: string): T {
@@ -58,6 +58,12 @@ export class Environment {
       process.exit(1);
     }
 
-    return variable === 'true';
+    return variable === "true";
+  }
+
+  public static isLocalEnvironment(): boolean {
+    const NODE_ENV = Environment.getEnvString("NODE_ENV");
+
+    return NODE_ENV === "development" || NODE_ENV === "test";
   }
 }

@@ -1,4 +1,4 @@
-import { Environment } from '@shared/helpers/Environment';
+import { Environment } from "../helpers/Environment/index";
 
 export class AppException extends Error {
   public readonly message: string;
