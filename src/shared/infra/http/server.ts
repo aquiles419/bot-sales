@@ -2,11 +2,11 @@ import "reflect-metadata";
 import express from "express";
 import { config } from "dotenv";
 
+import "../../container/index";
 import cors from "cors";
 import { Environment } from "../../helpers/Environment";
 import "../../../shared/mongoose";
 import routes from "../http/routes";
-import "../../container/index";
 
 config();
 const app = express();
