@@ -6,6 +6,7 @@ import cors from "cors";
 import { Environment } from "../../helpers/Environment";
 import "../../../shared/mongoose";
 import routes from "../http/routes";
+import "../../container/index";
 
 config();
 const app = express();

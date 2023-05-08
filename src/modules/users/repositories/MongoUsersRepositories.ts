@@ -4,7 +4,7 @@ import { User } from "../schemas/User";
 import { IUsersRepository } from "./IUsersRepository";
 import { ICreateUsersDTO } from "../dtos/IUsersDTO";
 
-export class MongoCampaignsRepository implements IUsersRepository {
+export class MongoUsersRepository implements IUsersRepository {
   private ormRepository: ReturnModelType<typeof User>;
 
   constructor() {
