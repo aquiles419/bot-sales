@@ -14,6 +14,7 @@ interface IAnyRequest extends IRequestUser {
   headers?: any;
   params?: any;
   query?: any;
+  user?: any;
 }
 
 type IResponseType<T> = IRequestUser & T;

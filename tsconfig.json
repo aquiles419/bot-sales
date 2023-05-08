@@ -100,7 +100,8 @@
   },
   "include": [
     "./src",
-    "src/alias.ts"
+    "src/alias.ts",
+    "@types"
   ],
   "exclude": [
     "node_modules"
