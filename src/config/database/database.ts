@@ -1,4 +1,4 @@
-import { Environment } from "../shared/helpers/Environment";
+import { Environment } from "../../shared/helpers/Environment";
 
 interface IDatabaseConfig {
   mongo: {
@@ -8,6 +8,6 @@ interface IDatabaseConfig {
 
 export const databaseConfig: IDatabaseConfig = {
   mongo: {
-    uri: Environment.getEnvString("PORT"),
+    uri: Environment.getEnvString("MONGO_URI"),
   },
 };

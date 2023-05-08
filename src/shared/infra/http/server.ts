@@ -3,6 +3,7 @@ import { config } from "dotenv";
 
 import cors from "cors";
 import { Environment } from "../../helpers/Environment";
+import "../../../shared/mongoose";
 
 config();
 const app = express();

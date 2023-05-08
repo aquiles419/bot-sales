@@ -39,6 +39,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "module-alias": "^2.2.2",
+    "mongo-locks": "^2.0.1",
+    "mongodb": "^5.4.0",
     "mongoose": "^7.1.0",
     "tsyringe": "^4.7.0"
   }
