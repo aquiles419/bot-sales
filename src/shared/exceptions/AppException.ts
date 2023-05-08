@@ -15,10 +15,5 @@ export class AppException extends Error {
     this.message = message;
     this.statusCode = statusCode;
     this.code = code;
-    if (Environment.isLocalEnvironment()) {
-      Error.captureStackTrace(this);
-    } else {
-      delete this.stack;
-    }
   }
 }

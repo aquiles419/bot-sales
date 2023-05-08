@@ -60,10 +60,4 @@ export class Environment {
 
     return variable === "true";
   }
-
-  public static isLocalEnvironment(): boolean {
-    const NODE_ENV = Environment.getEnvString("NODE_ENV");
-
-    return NODE_ENV === "development" || NODE_ENV === "test";
-  }
 }

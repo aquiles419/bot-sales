@@ -25,10 +25,11 @@ export class CreateUserController implements IController {
   ) {}
 
   async handle(request: IRequest<RequestType>): Promise<IResponse> {
-    const { id, email, name, password, created_at, updated_at } = request.body;
+    const { id, email, name, password, created_at, updated_at } =
+      request.body || {};
 
     if (!email || !password) {
-      throw new AppException("Campaign body is empty", 400, "MissingBody");
+      throw new AppException("User body is empty", 400, "MissingBody");
     }
 
     const data: ICreateUsersDTO = {

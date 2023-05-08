@@ -8,12 +8,12 @@ import { ExpressControllerAdapter } from "../../../shared/adapters/ExpressContro
 // controllers
 import { CreateUserController } from "../controllers/CreateUsers/CreateUsersController";
 
-const showInhabitantController = ExpressControllerAdapter(
+const createUsersController = ExpressControllerAdapter(
   container.resolve(CreateUserController)
 );
 
 const usersRoutes = Router();
 
-usersRoutes.post("/users", showInhabitantController);
+usersRoutes.post("/users", createUsersController);
 
 export default usersRoutes;
