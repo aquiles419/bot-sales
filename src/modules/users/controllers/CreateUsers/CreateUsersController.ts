@@ -3,7 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { AppException } from "../../../../shared/exceptions";
 import { ICreateUsersDTO, ITrips } from "../../dtos/IUsersDTO";
 import { created } from "../../../../shared/helpers/HttpResponseCodes";
-import { ICreateCampaignUseCase } from "../../useCases/CreateUsers/ICreateUsersUseCase";
+import { ICreateUserUseCase } from "../../useCases/CreateUsers/ICreateUsersUseCase";
 
 type RequestType = {
   body: {
@@ -18,10 +18,10 @@ type RequestType = {
 };
 
 @injectable()
-export class CreateCampaignController implements IController {
+export class CreateUserController implements IController {
   constructor(
     @inject("CreateUsersUseCase")
-    private createCampaignUseCase: ICreateCampaignUseCase
+    private createUserUseCase: ICreateUserUseCase
   ) {}
 
   async handle(request: IRequest<RequestType>): Promise<IResponse> {
@@ -40,8 +40,8 @@ export class CreateCampaignController implements IController {
       updated_at,
     };
 
-    const campaign = await this.createCampaignUseCase.execute(data);
+    const user = await this.createUserUseCase.execute(data);
 
-    return created(campaign);
+    return created(user);
   }
 }
