@@ -1,5 +1,5 @@
 import IUsersDTO from "../../dtos/IUsersDTO";
-import { IUsersRepository } from "../../repositories/ICreateUsersRepository";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { User } from "../../schemas/User";
 
 export class ListUsersUseCase {

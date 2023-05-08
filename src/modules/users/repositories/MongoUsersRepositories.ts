@@ -1,62 +1,35 @@
-import { IUsersRepository } from "./ICreateUsersRepository";
-import { ICreateUsersDTO, IUpdateUsersDTO } from "../dtos/IUsersDTO";
-import { User } from "../schemas/User";
-import mongoose, { Document } from "mongoose";
+import { getModelForClass, ReturnModelType } from "@typegoose/typegoose";
 
-export class UsersRepository implements IUsersRepository {
-  private readonly userModel: mongoose.Model<Document>;
+import { User } from "../schemas/User";
+import { IUsersRepository } from "./IUsersRepository";
+import { ICreateUsersDTO } from "../dtos/IUsersDTO";
+
+export class MongoCampaignsRepository implements IUsersRepository {
+  private ormRepository: ReturnModelType<typeof User>;
 
   constructor() {
-    this.userModel = mongoose.model("User");
+    this.ormRepository = getModelForClass(User);
   }
 
-  async create(data: ICreateUsersDTO): Promise<User> {
-    const user = await this.userModel.create(data);
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    };
+  public async create(data: ICreateUsersDTO): Promise<User> {
+    return this.ormRepository.create(data);
   }
 
-  async findById(id: string): Promise<User | null> {
-    const user = await this.userModel.findById(id);
-    if (!user) {
-      return null;
-    }
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    };
+  public async findById(id: string): Promise<User | null> {
+    return this.ormRepository.findOne({ _id: id });
   }
 
-  async findUsers(data: any): Promise<User[]> {
-    const users = await this.userModel.find(data);
-    return users.map((user) => ({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    }));
+  public async findAll(): Promise<User[]> {
+    return this.ormRepository.find();
   }
 
-  async save(data: IUpdateUsersDTO): Promise<User | null> {
-    const user = await this.userModel.findByIdAndUpdate(
-      data.id,
-      { $set: data },
-      { new: true }
-    );
-    if (!user) {
-      return null;
-    }
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    };
+  public async save(user: User): Promise<User | null> {
+    return this.ormRepository.findOneAndUpdate({ _id: user._id }, user, {
+      new: true,
+    });
   }
 
-  async delete(id: string): Promise<void> {
-    await this.userModel.findByIdAndDelete(id);
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.deleteOne({ _id: id });
   }
 }
