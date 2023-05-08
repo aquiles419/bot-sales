@@ -1,9 +1,9 @@
-import { ListUsersUseCase } from "../../useCases/CreateUsers";
 import { IController, IRequest, IResponse } from "../../../../shared/protocols";
 import { inject, injectable } from "tsyringe";
 import { AppException } from "../../../../shared/exceptions";
 import { ICreateUsersDTO, ITrips } from "../../dtos/IUsersDTO";
 import { created } from "../../../../shared/helpers/HttpResponseCodes";
+import { ICreateCampaignUseCase } from "../../useCases/CreateUsers/ICreateUsersUseCase";
 
 type RequestType = {
   body: {
@@ -21,7 +21,7 @@ type RequestType = {
 export class CreateCampaignController implements IController {
   constructor(
     @inject("CreateUsersUseCase")
-    private createCampaignUseCase: ListUsersUseCase
+    private createCampaignUseCase: ICreateCampaignUseCase
   ) {}
 
   async handle(request: IRequest<RequestType>): Promise<IResponse> {
