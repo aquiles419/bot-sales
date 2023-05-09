@@ -21,3 +21,16 @@
 **Busca todos os usuarios**:
 
 - [GET] - /trip/v1/users
+
+**Cria uma nova viagem**:
+
+[POST] - trip/v1/trips
+
+- Ex de envio da requisição:
+
+```
+{
+  "name": "travelTeste2",
+  "description": "travel@example.com"
+}
+```
