@@ -10,6 +10,39 @@ export class MongoTripsRepository implements ITripsRepository {
   constructor() {
     this.ormRepository = getModelForClass(Trip);
   }
+  public async findByIdAndPopulate(id: string): Promise<any> {
+    const trip = await this.ormRepository.aggregate([
+      {
+        $match: {
+          _id: id,
+        },
+      },
+      {
+        $lookup: {
+          from: "users",
+          let: { travelers: "$travelers" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $in: ["$_id", "$$travelers"],
+                },
+              },
+            },
+            {
+              $project: {
+                _id: 1,
+                name: 1,
+                email: 1,
+              },
+            },
+          ],
+          as: "travelers",
+        },
+      },
+    ]);
+    return trip;
+  }
 
   public async create(data: ICreateTripsDTO): Promise<Trip> {
     return this.ormRepository.create(data);

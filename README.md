@@ -38,3 +38,7 @@
 **Busca todas as viagens**:
 
 - [GET] - /trip/v1/trips
+
+**Busca viagem pelo ID trazendo id e nome dos viajantes daquela viajem**:
+
+- [GET] - /trip/v1/trips/:id
