@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { Trip } from "../../schemas/User";
+import { Trip } from "../../schemas/Trip";
 import { AppException } from "../../../../shared/exceptions/AppException";
 import { v4 as uuidV4 } from "uuid";
 import ITripsDTO from "../../dtos/ITripsDTO";

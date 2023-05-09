@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { Trip } from "../../schemas/User";
+import { Trip } from "../../schemas/Trip";
 import { IListTripsFilters } from "../../dtos/ITripsDTO";
 import { IListTripsUseCase } from "./IListTripsUseCase";
 import { ITripsRepository } from "../../repositories/ITripsRepository";

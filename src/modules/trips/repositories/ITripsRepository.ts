@@ -3,7 +3,7 @@ import {
   IListTripsFilters,
   IUpdateTripsDTO,
 } from "../dtos/ITripsDTO";
-import { Trip } from "../schemas/User";
+import { Trip } from "../schemas/Trip";
 
 export interface ITripsRepository {
   create(data: ICreateTripsDTO): Promise<Trip>;

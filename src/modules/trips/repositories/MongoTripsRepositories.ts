@@ -1,6 +1,6 @@
 import { getModelForClass, ReturnModelType } from "@typegoose/typegoose";
 
-import { Trip } from "../schemas/User";
+import { Trip } from "../schemas/Trip";
 import { ITripsRepository } from "./ITripsRepository";
 import { ICreateTripsDTO, IListTripsFilters } from "../dtos/ITripsDTO";
 

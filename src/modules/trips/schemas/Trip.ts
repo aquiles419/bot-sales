@@ -1,5 +1,12 @@
-import { modelOptions, prop } from "@typegoose/typegoose";
+import {
+  Severity,
+  modelOptions,
+  prop,
+  setGlobalOptions,
+} from "@typegoose/typegoose";
 import { IUserTripDTO } from "../../users/dtos/IUsersDTO";
+
+setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 
 @modelOptions({
   schemaOptions: {
