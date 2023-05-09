@@ -34,3 +34,7 @@
   "description": "travel@example.com"
 }
 ```
+
+**Busca todas as viagens**:
+
+- [GET] - /trip/v1/trips
