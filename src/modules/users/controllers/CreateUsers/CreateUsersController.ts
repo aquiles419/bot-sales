@@ -4,7 +4,6 @@ import { AppException } from "../../../../shared/exceptions";
 import { ICreateUsersDTO, ITrips } from "../../dtos/IUsersDTO";
 import { created } from "../../../../shared/helpers/HttpResponseCodes";
 import { ICreateUserUseCase } from "../../useCases/CreateUsers/ICreateUsersUseCase";
-import { v4 as uuidV4 } from "uuid";
 
 type RequestType = {
   body: {
@@ -26,19 +25,19 @@ export class CreateUserController implements IController {
   ) {}
 
   async handle(request: IRequest<RequestType>): Promise<IResponse> {
-    const { email, name, password } = request.body;
+    const { id, email, name, password, created_at, updated_at } = request.body;
 
     if (!email || !name || !password) {
       throw new AppException("User body is empty", 400, "MissingBody");
     }
 
     const data: ICreateUsersDTO = {
-      _id: uuidV4(),
+      _id: id,
       email,
       name,
       password,
-      created_at: new Date(),
-      updated_at: new Date(),
+      created_at,
+      updated_at,
     };
 
     const user = await this.createUserUseCase.execute(data);
