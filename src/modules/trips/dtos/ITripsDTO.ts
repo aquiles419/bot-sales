@@ -27,4 +27,9 @@ export interface ICreateTripsDTO {
   updated_at: Date;
 }
 
-export type IUpdateUsersDTO = Partial<ICreateTripsDTO> & { _id: string };
+export type IUpdateTripsDTO = Partial<ICreateTripsDTO> & { _id: string };
+
+export interface IListTripsFilters {
+  per: number;
+  page: number;
+}

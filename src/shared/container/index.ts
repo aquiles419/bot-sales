@@ -1,1 +1,2 @@
-import "../../modules/users/container/index";
+import "../../modules/users/container";
+import "../../modules/trips/container";
