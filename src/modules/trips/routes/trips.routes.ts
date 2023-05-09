@@ -7,13 +7,20 @@ import { ExpressControllerAdapter } from "../../../shared/adapters/ExpressContro
 
 // controllers
 import { CreateTripsController } from "../controllers/CreateTrips";
+import { ListTripsController } from "../controllers/ListTrips/ListTripsController";
 
 const createTripsController = ExpressControllerAdapter(
   container.resolve(CreateTripsController)
 );
 
+const listTripsController = ExpressControllerAdapter(
+  container.resolve(ListTripsController)
+);
+
 const tripsRoutes = Router();
 
-tripsRoutes.post("/trips", createTripsController);
+tripsRoutes
+  .post("/trips", createTripsController)
+  .get("/trips", listTripsController);
 
 export default tripsRoutes;

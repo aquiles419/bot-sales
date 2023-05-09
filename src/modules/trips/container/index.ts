@@ -10,6 +10,7 @@ import {
   ICreateTripsUseCase,
   CreateTripsUseCase,
 } from "../useCases/CreateTrips";
+import { IListTripsUseCase, ListTripsUseCase } from "../useCases/ListTrips";
 
 // Repositories
 container.registerSingleton<ITripsRepository>(
@@ -21,4 +22,9 @@ container.registerSingleton<ITripsRepository>(
 container.registerSingleton<ICreateTripsUseCase>(
   "CreateTripsUseCase",
   CreateTripsUseCase
+);
+
+container.registerSingleton<IListTripsUseCase>(
+  "ListTripsUseCase",
+  ListTripsUseCase
 );
