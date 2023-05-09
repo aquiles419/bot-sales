@@ -2,7 +2,7 @@ import { getModelForClass, ReturnModelType } from "@typegoose/typegoose";
 
 import { User } from "../schemas/User";
 import { IUsersRepository } from "./IUsersRepository";
-import { ICreateUsersDTO } from "../dtos/IUsersDTO";
+import { ICreateUsersDTO, IListUsersFilters } from "../dtos/IUsersDTO";
 
 export class MongoUsersRepository implements IUsersRepository {
   private ormRepository: ReturnModelType<typeof User>;
@@ -31,5 +31,11 @@ export class MongoUsersRepository implements IUsersRepository {
 
   public async delete(id: string): Promise<void> {
     await this.ormRepository.deleteOne({ _id: id });
+  }
+
+  public async findAllWithFilters(filters: IListUsersFilters): Promise<User[]> {
+    const skip = (filters.page - 1) * filters.per;
+
+    return this.ormRepository.find().skip(skip).limit(filters.per);
   }
 }

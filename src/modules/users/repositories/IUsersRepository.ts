@@ -1,10 +1,14 @@
-import IUsersDTO, { ICreateUsersDTO, IUpdateUsersDTO } from "../dtos/IUsersDTO";
+import IUsersDTO, {
+  ICreateUsersDTO,
+  IListUsersFilters,
+  IUpdateUsersDTO,
+} from "../dtos/IUsersDTO";
 import { User } from "../schemas/User";
 
 export interface IUsersRepository {
   create(data: ICreateUsersDTO): Promise<User>;
   findById(id: string): Promise<User | null>;
-  findAll(data: IUsersDTO): Promise<User[]>;
+  findAllWithFilters(filters: IListUsersFilters): Promise<User[]>;
   save(points: IUpdateUsersDTO): Promise<User | null>;
   delete(id: string): Promise<void>;
 }

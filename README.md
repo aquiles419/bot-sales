@@ -17,3 +17,7 @@
   "password": "password"
 }
 ```
+
+**Busca todos os usuarios**:
+
+- [GET] - /trip/v1/users

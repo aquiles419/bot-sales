@@ -28,3 +28,8 @@ export interface ICreateUsersDTO {
 }
 
 export type IUpdateUsersDTO = Partial<ICreateUsersDTO> & { _id: string };
+
+export interface IListUsersFilters {
+  per: number;
+  page: number;
+}

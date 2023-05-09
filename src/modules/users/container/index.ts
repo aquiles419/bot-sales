@@ -6,7 +6,11 @@ import { IUsersRepository } from "../repositories/IUsersRepository";
 import { MongoUsersRepository } from "../repositories/MongoUsersRepositories";
 
 // UseCases
-import { ListUsersUseCase, ICreateUserUseCase } from "../useCases/CreateUsers";
+import {
+  ICreateUserUseCase,
+  CreateUsersUseCase,
+} from "../useCases/CreateUsers";
+import { IListUsersUseCase, ListUsersUseCase } from "../useCases/ListUsers";
 
 // Repositories
 container.registerSingleton<IUsersRepository>(
@@ -17,5 +21,10 @@ container.registerSingleton<IUsersRepository>(
 // useCases
 container.registerSingleton<ICreateUserUseCase>(
   "CreateUsersUseCase",
+  CreateUsersUseCase
+);
+
+container.registerSingleton<IListUsersUseCase>(
+  "ListUsersUseCase",
   ListUsersUseCase
 );

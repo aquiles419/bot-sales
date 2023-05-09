@@ -6,7 +6,7 @@ import { AppException } from "../../../../shared/exceptions/AppException";
 import { v4 as uuidV4 } from "uuid";
 
 @injectable()
-export class ListUsersUseCase {
+export class CreateUsersUseCase {
   constructor(
     @inject("UserRepository")
     private usersRepository: IUsersRepository
