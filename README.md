@@ -83,3 +83,16 @@
 **Busca todas as categorias**:
 
 - [GET] - /trip/v1/category
+
+**Login**:
+
+- [GET] - /trip/v1/login
+
+- Ex de envio da requisição:
+
+```
+{
+  "email": "hashTeste@example.com",
+  "password": "password"
+}
+```
