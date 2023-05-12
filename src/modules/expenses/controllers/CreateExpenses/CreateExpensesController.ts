@@ -14,6 +14,7 @@ type RequestType = {
     value?: number;
     payer?: string;
     debtors?: IUsersDTO[];
+    category: string;
     created_at?: Date;
     updated_at?: Date;
   };
@@ -34,6 +35,7 @@ export class CreateExpensesController implements IController {
       value,
       payer,
       debtors,
+      category,
       created_at,
       updated_at,
     } = request.body;
@@ -49,6 +51,7 @@ export class CreateExpensesController implements IController {
       value,
       payer,
       debtors,
+      category,
       created_at,
       updated_at,
     };

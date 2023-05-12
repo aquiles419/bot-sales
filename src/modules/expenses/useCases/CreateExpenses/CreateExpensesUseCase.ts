@@ -29,18 +29,19 @@ export class CreateExpensesUseCase {
 
     const currentDate = new Date();
 
-    const users: IExpensesDTO = {
+    const expenses: IExpensesDTO = {
       _id: data._id || uuidV4(),
       trip_id: data._id,
       description: data.description,
       value: data.value,
       payer: data.payer,
       debtors: data.debtors,
+      category: data.category,
       created_at: data.created_at || currentDate,
       updated_at: data.updated_at || currentDate,
     };
 
-    const createdExpenses = await this.expensesRepository.create(users);
+    const createdExpenses = await this.expensesRepository.create(expenses);
 
     return createdExpenses;
   }

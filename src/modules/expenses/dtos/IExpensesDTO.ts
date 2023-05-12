@@ -6,6 +6,7 @@ export interface IExpenses {
   value: number;
   payer: string;
   debtors: IUsersDTO[];
+  category: string;
   created_at: Date;
   updated_at: Date;
 }
@@ -17,6 +18,7 @@ export default interface IExpensesDTO {
   value: number;
   payer: string;
   debtors: IUsersDTO[];
+  category: string;
   created_at: Date;
   updated_at: Date;
 }
@@ -28,6 +30,7 @@ export interface IExpensesCreateDTO {
   value: number;
   payer: string;
   debtors: IUsersDTO[];
+  category: string;
   created_at: Date;
   updated_at: Date;
 }

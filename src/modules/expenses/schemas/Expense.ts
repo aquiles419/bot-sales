@@ -41,6 +41,9 @@ export class Expense {
   public debtors: IUsersDTO[];
 
   @prop()
+  public category: IUsersDTO[];
+
+  @prop()
   public created_at: Date;
 
   @prop()
