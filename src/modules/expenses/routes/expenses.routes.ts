@@ -4,6 +4,7 @@ import { container } from "tsyringe";
 
 // adapters
 import { ExpressControllerAdapter } from "../../../shared/adapters/ExpressControllerAdapter";
+import { auth } from "../../../shared/middlewares/auth";
 
 // controllers
 import { CreateExpensesController } from "../controllers/CreateExpenses";
@@ -18,6 +19,7 @@ const listExpensesController = ExpressControllerAdapter(
 );
 
 const expensesRoutes = Router();
+expensesRoutes.use(auth);
 
 expensesRoutes
   .post("/expenses", createExpensesController) // Trocar nome da rota

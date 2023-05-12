@@ -4,6 +4,7 @@ import { container } from "tsyringe";
 
 // adapters
 import { ExpressControllerAdapter } from "../../../shared/adapters/ExpressControllerAdapter";
+import { auth } from "../../../shared/middlewares/auth";
 
 // controllers
 import { CreateCategoryController } from "../controllers/CreateCategory";
@@ -18,6 +19,7 @@ const listCategoryController = ExpressControllerAdapter(
 );
 
 const categoryRoutes = Router();
+categoryRoutes.use(auth);
 
 categoryRoutes
   .post("/category", createCategoryController)

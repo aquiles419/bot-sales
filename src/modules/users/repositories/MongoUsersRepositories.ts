@@ -19,6 +19,10 @@ export class MongoUsersRepository implements IUsersRepository {
     return this.ormRepository.findOne({ _id: id });
   }
 
+  public async findByEmail(email: string): Promise<User | null> {
+    return this.ormRepository.findOne({ email: email });
+  }
+
   public async findAll(): Promise<User[]> {
     return this.ormRepository.find();
   }

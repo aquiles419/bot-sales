@@ -4,6 +4,7 @@ import { container } from "tsyringe";
 
 // adapters
 import { ExpressControllerAdapter } from "../../../shared/adapters/ExpressControllerAdapter";
+import { auth } from "../../../shared/middlewares/auth";
 
 // controllers
 import { CreateTripsController } from "../controllers/CreateTrips";
@@ -28,6 +29,8 @@ const listExpensesByTripId = ExpressControllerAdapter(
 );
 
 const tripsRoutes = Router();
+
+tripsRoutes.use(auth);
 
 tripsRoutes
   .post("/trips", createTripsController)
