@@ -66,4 +66,20 @@
 
 **Busca viagens com os custos**:
 
-- [GET] - /trip/v1/:trip_id/expenses
+- [GET] - /trip/v1/trips/:trip_id/expenses
+  **Cria uma nova categoria**:
+
+[POST] - trip/v1/category
+
+- Ex de envio da requisição:
+
+```
+{
+	"name": "testeAPI",
+	"trip_id": "c3b8a0cb-1bf9-40e2-b3a9-756b03a9b30d"
+}
+```
+
+**Busca todas as categorias**:
+
+- [GET] - /trip/v1/category
