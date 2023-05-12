@@ -62,3 +62,7 @@
   "debtors": ["c3b8a0cb-1bf9-40e2-b3a9-756b03a9b30d", "c5a58b87-205f-42bb-9a34-9ffa1bca0c72"]
 }
 ```
+
+**Busca viagens com os custos**:
+
+- [GET] - /trip/v1/:trip_id/expenses
