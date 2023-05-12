@@ -5,6 +5,7 @@ import { created } from "../../../../shared/helpers/HttpResponseCodes";
 import { IUserTripDTO } from "../../../users/dtos/IUsersDTO";
 import { ICreateTripsDTO } from "../../dtos/ITripsDTO";
 import { ICreateTripsUseCase } from "../../useCases/CreateTrips";
+import IExpensesDTO from "../../../expenses/dtos/IExpensesDTO";
 
 type RequestType = {
   body: {
@@ -12,6 +13,7 @@ type RequestType = {
     name?: string;
     description?: string;
     travelers?: IUserTripDTO[];
+    expenses?: IExpensesDTO[];
     created_at?: Date;
     updated_at?: Date;
   };
@@ -25,8 +27,15 @@ export class CreateTripsController implements IController {
   ) {}
 
   async handle(request: IRequest<RequestType>): Promise<IResponse> {
-    const { id, name, description, travelers, created_at, updated_at } =
-      request.body;
+    const {
+      id,
+      name,
+      description,
+      travelers,
+      created_at,
+      updated_at,
+      expenses,
+    } = request.body;
 
     if (!name) {
       throw new AppException("Name body is empty", 400, "MissingBody");
@@ -35,6 +44,7 @@ export class CreateTripsController implements IController {
     const data: ICreateTripsDTO = {
       _id: id,
       name,
+      expenses,
       description,
       travelers,
       created_at,

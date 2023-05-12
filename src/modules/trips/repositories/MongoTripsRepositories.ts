@@ -71,4 +71,31 @@ export class MongoTripsRepository implements ITripsRepository {
 
     return this.ormRepository.find().skip(skip).limit(filters.per);
   }
+
+  public async findTripByIdAndPopulateExpenses(id: string): Promise<any> {
+    const trip = await this.ormRepository.aggregate([
+      {
+        $match: {
+          _id: id,
+        },
+      },
+      {
+        $lookup: {
+          from: "expenses",
+          let: { expenses: "$expenses" },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $in: ["$_id", "$$expenses"],
+                },
+              },
+            },
+          ],
+          as: "expenses",
+        },
+      },
+    ]);
+    return trip;
+  }
 }

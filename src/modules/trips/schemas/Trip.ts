@@ -5,6 +5,7 @@ import {
   setGlobalOptions,
 } from "@typegoose/typegoose";
 import { IUserTripDTO } from "../../users/dtos/IUsersDTO";
+import IExpensesDTO from "../../expenses/dtos/IExpensesDTO";
 
 setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 
@@ -33,6 +34,9 @@ export class Trip {
 
   @prop()
   public travelers: IUserTripDTO[];
+
+  @prop()
+  public expenses: IExpensesDTO[];
 
   @prop()
   public created_at: Date;

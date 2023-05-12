@@ -1,3 +1,4 @@
+import IExpensesDTO from "../../expenses/dtos/IExpensesDTO";
 import { IUserTripDTO } from "../../users/dtos/IUsersDTO";
 
 export interface ITrips {
@@ -5,6 +6,7 @@ export interface ITrips {
   description: string;
   state: string;
   travelers?: IUserTripDTO[];
+  expenses?: IExpensesDTO[];
   created_at: Date;
   updated_at: Date;
 }
@@ -14,6 +16,7 @@ export default interface ITripsDTO {
   name: string;
   description: string;
   travelers?: IUserTripDTO[];
+  expenses?: IExpensesDTO[];
   created_at: Date;
   updated_at: Date;
 }
@@ -23,6 +26,7 @@ export interface ICreateTripsDTO {
   name: string;
   description: string;
   travelers?: IUserTripDTO[];
+  expenses?: IExpensesDTO[];
   created_at: Date;
   updated_at: Date;
 }
