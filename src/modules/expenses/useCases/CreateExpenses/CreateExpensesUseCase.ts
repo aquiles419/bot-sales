@@ -36,7 +36,7 @@ export class CreateExpensesUseCase {
       value: data.value,
       payer: data.payer,
       debtors: data.debtors,
-      category: data.category,
+      category_id: data.category_id,
       created_at: data.created_at || currentDate,
       updated_at: data.updated_at || currentDate,
     };
