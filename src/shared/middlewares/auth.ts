@@ -12,7 +12,7 @@ export const auth = async (
     return response.status(401).json({ message: "Token is required" });
   }
 
-  //Bearer ytghsdfa5s6df7asoidofjahs
+  //HereAuthBearer
   const [, token] = authHeader.split(" ");
 
   try {
