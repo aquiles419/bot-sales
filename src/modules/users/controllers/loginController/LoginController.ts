@@ -31,7 +31,7 @@ export class LoginController implements IController {
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new AppException("Invalid password", 401, "InvalidPassword");
+      throw new AppException("Invalid credentials", 401, "InvalidCredentials");
     }
 
     const token = jwt.sign({ id: user._id }, process.env.APP_SECRET, {

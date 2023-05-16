@@ -1,5 +1,3 @@
-import { Environment } from "../helpers/Environment/index";
-
 export class AppException extends Error {
   public readonly message: string;
 
@@ -15,5 +13,7 @@ export class AppException extends Error {
     this.message = message;
     this.statusCode = statusCode;
     this.code = code;
+
+    Error.captureStackTrace(this);
   }
 }
