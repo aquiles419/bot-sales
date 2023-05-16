@@ -5,11 +5,12 @@ import { ICreateUsersDTO, ITrips } from "../../dtos/IUsersDTO";
 import { created } from "../../../../shared/helpers/HttpResponseCodes";
 import { ICreateUserUseCase } from "../../useCases/CreateUsers/ICreateUsersUseCase";
 import { hash } from "bcrypt";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 type RequestType = {
   body: {
     id?: string;
-    name?: string;
+    name: string;
     email?: string;
     trips?: ITrips[];
     password?: string;
@@ -22,17 +23,29 @@ type RequestType = {
 export class CreateUserController implements IController {
   constructor(
     @inject("CreateUsersUseCase")
-    private createUserUseCase: ICreateUserUseCase
+    private createUserUseCase: ICreateUserUseCase,
+    @inject("UserRepository")
+    private userRespository: IUsersRepository
   ) {}
 
   async handle(request: IRequest<RequestType>): Promise<IResponse> {
     const { id, email, name, password, created_at, updated_at } = request.body;
 
-    const passwordHash = await hash(password, 8);
+    const userAlreadyExists = this.userRespository.findByEmail(email);
 
-    if (!email || !name || !password) {
-      throw new AppException("User body is empty", 400, "MissingBody");
+    if (!name) {
+      throw new AppException("Name is empty", 400, "MissingBody");
     }
+
+    if (userAlreadyExists) {
+      throw new AppException(
+        "Email already linked to a user",
+        400,
+        "EmailAlreadExists"
+      );
+    }
+
+    const passwordHash = await hash(password, 8);
 
     const data: ICreateUsersDTO = {
       _id: id,
