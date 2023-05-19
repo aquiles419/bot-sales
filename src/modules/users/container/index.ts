@@ -11,6 +11,9 @@ import {
   CreateUsersUseCase,
 } from "../useCases/CreateUsers";
 import { IListUsersUseCase, ListUsersUseCase } from "../useCases/ListUsers";
+import { IUpdateUsersDTO } from "../dtos/IUsersDTO";
+import { IUpdateUsersUseCase } from "../useCases/UpdateUsers/IUpdateUsersUseCase";
+import { UpdateUsersUseCase } from "../useCases/UpdateUsers/UpdateCampaignUseCase";
 
 // Repositories
 container.registerSingleton<IUsersRepository>(
@@ -27,4 +30,9 @@ container.registerSingleton<ICreateUserUseCase>(
 container.registerSingleton<IListUsersUseCase>(
   "ListUsersUseCase",
   ListUsersUseCase
+);
+
+container.registerSingleton<IUpdateUsersUseCase>(
+  "UpdateUsersUseCase",
+  UpdateUsersUseCase
 );

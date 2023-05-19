@@ -32,6 +32,7 @@ export class CreateUsersUseCase {
       name: data.name,
       email: data.email,
       password: data.password,
+      user_photo: "",
       created_at: data.created_at || currentDate,
       updated_at: data.updated_at || currentDate,
     };

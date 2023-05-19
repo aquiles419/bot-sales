@@ -10,6 +10,7 @@ import { CreateUserController } from "../controllers/CreateUsers/CreateUsersCont
 import { ListUsersController } from "../controllers/ListUsers";
 import { LoginController } from "../controllers/loginController/LoginController";
 import { auth } from "../../../shared/middlewares/auth";
+import { UpdateUsersController } from "../controllers/UpdateUsers/UpdateUsersController";
 
 const createUsersController = ExpressControllerAdapter(
   container.resolve(CreateUserController)
@@ -23,6 +24,10 @@ const loginController = ExpressControllerAdapter(
   container.resolve(LoginController)
 );
 
+const updatedUsers = ExpressControllerAdapter(
+  container.resolve(UpdateUsersController)
+);
+
 const usersRoutes = Router();
 
 usersRoutes.post("/login", loginController);
@@ -31,5 +36,6 @@ usersRoutes.post("/users", createUsersController);
 usersRoutes.use(auth);
 
 usersRoutes.get("/users", listUsersController);
+usersRoutes.put("/users/:id", updatedUsers);
 
 export default usersRoutes;

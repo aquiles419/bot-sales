@@ -13,6 +13,7 @@ type RequestType = {
     name: string;
     email?: string;
     trips?: ITrips[];
+    user_photo?: string;
     password?: string;
     created_at?: Date;
     updated_at?: Date;
@@ -29,9 +30,10 @@ export class CreateUserController implements IController {
   ) {}
 
   async handle(request: IRequest<RequestType>): Promise<IResponse> {
-    const { id, email, name, password, created_at, updated_at } = request.body;
+    const { id, email, name, password, user_photo, created_at, updated_at } =
+      request.body;
 
-    const userAlreadyExists = this.userRespository.findByEmail(email);
+    const userAlreadyExists = await this.userRespository.findByEmail(email);
 
     if (!name) {
       throw new AppException("Name is empty", 400, "MissingBody");
@@ -52,6 +54,7 @@ export class CreateUserController implements IController {
       email,
       name,
       password: passwordHash,
+      user_photo,
       created_at,
       updated_at,
     };

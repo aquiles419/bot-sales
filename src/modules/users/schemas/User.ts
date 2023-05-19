@@ -38,6 +38,9 @@ export class User {
   public trips: ITrips[];
 
   @prop()
+  public user_photo: string;
+
+  @prop()
   public created_at: Date;
 
   @prop()
