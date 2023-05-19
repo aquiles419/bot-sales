@@ -22,6 +22,20 @@
 
 - [GET] - /trip/v1/users
 
+**Atualiza um usuario:**
+
+- [PUT] - /trip/v1/users/:id
+
+  Ex de envio da requisição:
+
+```
+{
+  "name": "John Doe7",
+  "email": "johndoe7@example.com",
+  "password": "password2"
+}
+```
+
 **Cria uma nova viagem**:
 
 [POST] - trip/v1/trips
