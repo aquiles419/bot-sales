@@ -13,8 +13,8 @@ import {
 import { IListUsersUseCase, ListUsersUseCase } from "../useCases/ListUsers";
 import { IUpdateUsersUseCase } from "../useCases/UpdateUsers/IUpdateUsersUseCase";
 import { UpdateUsersUseCase } from "../useCases/UpdateUsers/UpdateUsersUseCase";
-import { IUploadPhotoUseCase } from "../useCases/UploadFile/IUploadPhotoUseCase";
-import { UploadPhotoUseCase } from "../useCases/UploadFile/UploadPhotoUseCase";
+import { IUploadPhotoUseCase } from "../useCases/UploadPhoto/IUploadPhotoUseCase";
+import { UploadPhotoUseCase } from "../useCases/UploadPhoto/UploadPhotoUseCase";
 
 // Repositories
 container.registerSingleton<IUsersRepository>(

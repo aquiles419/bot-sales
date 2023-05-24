@@ -1,6 +1,6 @@
 import { IRequest } from "../../../../shared/protocols";
 import { inject, injectable } from "tsyringe";
-import { IUploadPhotoUseCase } from "../../useCases/UploadFile/IUploadPhotoUseCase";
+import { IUploadPhotoUseCase } from "../../useCases/UploadPhoto/IUploadPhotoUseCase";
 
 @injectable()
 export class UploadPhotoController {
