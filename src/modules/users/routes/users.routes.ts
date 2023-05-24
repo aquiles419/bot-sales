@@ -43,7 +43,7 @@ usersRoutes.get("/users", listUsersController);
 usersRoutes.put("/users/:id", updatedUsers);
 
 usersRoutes.post(
-  "/users/file/:id",
+  "/users/photo",
   upload.single("user_photo"),
   (request, response) => {
     const uploadPhotoController = container.resolve(UploadPhotoController);

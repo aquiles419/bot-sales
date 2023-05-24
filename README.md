@@ -36,6 +36,12 @@
 }
 ```
 
+**Adiciona URL da foto no usuário logado:**
+
+- [POST] - /trip/v1/users/photo
+
+Essa rota tem a finalidade de subir um arquivo para a AWS e adicionar o link do arquivo no campo user_photo no modelo de user do usuário logoda
+
 **Cria uma nova viagem**:
 
 [POST] - trip/v1/trips
