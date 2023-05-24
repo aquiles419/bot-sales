@@ -10,6 +10,6 @@ export interface IExpensesRepository {
   findById(id: string): Promise<Expense | null>;
   findByIdAndPopulate(id: string): Promise<any | null>;
   findAllWithFilters(filters: IListExpensesFilters): Promise<Expense[]>;
-  save(trips: IUpdateExpensesDTO): Promise<Expense | null>;
+  save(user: Expense): Promise<Expense | null>;
   delete(id: string): Promise<void>;
 }

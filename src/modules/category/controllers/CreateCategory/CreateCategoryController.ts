@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { AppException } from "../../../../shared/exceptions";
 import { created } from "../../../../shared/helpers/HttpResponseCodes";
 import ICategoryDTO from "../../dtos/ICategoryDTO";
+import { ICreateCategoryUseCase } from "../../useCases/CreateCategory";
 
 type RequestType = {
   body: {
