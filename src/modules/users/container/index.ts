@@ -11,9 +11,10 @@ import {
   CreateUsersUseCase,
 } from "../useCases/CreateUsers";
 import { IListUsersUseCase, ListUsersUseCase } from "../useCases/ListUsers";
-import { IUpdateUsersDTO } from "../dtos/IUsersDTO";
 import { IUpdateUsersUseCase } from "../useCases/UpdateUsers/IUpdateUsersUseCase";
-import { UpdateUsersUseCase } from "../useCases/UpdateUsers/UpdateCampaignUseCase";
+import { UpdateUsersUseCase } from "../useCases/UpdateUsers/UpdateUsersUseCase";
+import { IUploadPhotoUseCase } from "../useCases/UploadFile/IUploadPhotoUseCase";
+import { UploadPhotoUseCase } from "../useCases/UploadFile/UploadPhotoUseCase";
 
 // Repositories
 container.registerSingleton<IUsersRepository>(
@@ -35,4 +36,9 @@ container.registerSingleton<IListUsersUseCase>(
 container.registerSingleton<IUpdateUsersUseCase>(
   "UpdateUsersUseCase",
   UpdateUsersUseCase
+);
+
+container.registerSingleton<IUploadPhotoUseCase>(
+  "UploadPhoto",
+  UploadPhotoUseCase
 );

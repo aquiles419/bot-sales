@@ -2,7 +2,11 @@ import { getModelForClass, ReturnModelType } from "@typegoose/typegoose";
 
 import { User } from "../schemas/User";
 import { IUsersRepository } from "./IUsersRepository";
-import { ICreateUsersDTO, IListUsersFilters } from "../dtos/IUsersDTO";
+import {
+  ICreateUsersDTO,
+  IListUsersFilters,
+  IUserPhoto,
+} from "../dtos/IUsersDTO";
 
 export class MongoUsersRepository implements IUsersRepository {
   private ormRepository: ReturnModelType<typeof User>;
@@ -41,5 +45,13 @@ export class MongoUsersRepository implements IUsersRepository {
     const skip = (filters.page - 1) * filters.per;
 
     return this.ormRepository.find().skip(skip).limit(filters.per);
+  }
+
+  public async updloadPhoto(id: string, file: string): Promise<User | null> {
+    return this.ormRepository.findOneAndUpdate(
+      { _id: id },
+      { user_photo: file },
+      { new: true }
+    );
   }
 }

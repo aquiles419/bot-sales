@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import { container } from "tsyringe";
+import multer from "multer";
 
 // adapters
 import { ExpressControllerAdapter } from "../../../shared/adapters/ExpressControllerAdapter";
@@ -8,9 +9,11 @@ import { ExpressControllerAdapter } from "../../../shared/adapters/ExpressContro
 // controllers
 import { CreateUserController } from "../controllers/CreateUsers/CreateUsersController";
 import { ListUsersController } from "../controllers/ListUsers";
-import { LoginController } from "../controllers/loginController/LoginController";
 import { auth } from "../../../shared/middlewares/auth";
 import { UpdateUsersController } from "../controllers/UpdateUsers/UpdateUsersController";
+import multerConfig from "../../../config/multerConfig";
+import { LoginController } from "../controllers/LoginController/LoginController";
+import { UploadPhotoController } from "../controllers/UploadPhoto/UploadPhotoController";
 
 const createUsersController = ExpressControllerAdapter(
   container.resolve(CreateUserController)
@@ -29,6 +32,7 @@ const updatedUsers = ExpressControllerAdapter(
 );
 
 const usersRoutes = Router();
+const upload = multer(multerConfig);
 
 usersRoutes.post("/login", loginController);
 usersRoutes.post("/users", createUsersController);
@@ -37,5 +41,14 @@ usersRoutes.use(auth);
 
 usersRoutes.get("/users", listUsersController);
 usersRoutes.put("/users/:id", updatedUsers);
+
+usersRoutes.post(
+  "/users/file/:id",
+  upload.single("user_photo"),
+  (request, response) => {
+    const uploadPhotoController = container.resolve(UploadPhotoController);
+    return uploadPhotoController.handle(request, response);
+  }
+);
 
 export default usersRoutes;

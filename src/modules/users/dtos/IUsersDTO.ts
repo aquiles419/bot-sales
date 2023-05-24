@@ -40,3 +40,8 @@ export interface IListUsersFilters {
   per: number;
   page: number;
 }
+
+export interface IUserPhoto {
+  _id: string;
+  file?: Express.Multer.File;
+}

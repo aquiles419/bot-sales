@@ -10,6 +10,7 @@ interface IRequestUser {
 }
 
 interface IAnyRequest extends IRequestUser {
+  file?: Express.Multer.File;
   body?: any;
   headers?: any;
   params?: any;
