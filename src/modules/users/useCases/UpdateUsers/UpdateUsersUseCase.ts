@@ -15,9 +15,19 @@ export class UpdateUsersUseCase implements IUpdateUsersUseCase {
   async execute({ _id, ...data }: IUpdateUsersDTO): Promise<User> {
     const user = await this.userRepository.findById(_id);
 
+    const emailAlreadyExist = await this.userRepository.findByEmail(data.email) 
+
+    if(emailAlreadyExist) {
+      throw new AppException(
+        `User with email ${data.email} already exist`,
+        404,
+        "UserNotFound"
+      );
+    }
+
     if (!user) {
       throw new AppException(
-        `User whit id ${_id} not found`,
+        `User with id ${_id} not found`,
         404,
         "UserNotFound"
       );

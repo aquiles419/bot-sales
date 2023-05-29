@@ -19,7 +19,7 @@ export class LoginController implements IController {
     private userRepository: IUsersRepository
   ) {}
 
-  async handle(request: IRequest): Promise<any> {
+  async handle(request: IRequest): Promise<IResponse> {
     const { email, password } = request.body;
 
     const user = await this.userRepository.findByEmail(email);

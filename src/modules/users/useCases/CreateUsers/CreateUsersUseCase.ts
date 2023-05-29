@@ -23,7 +23,15 @@ export class CreateUsersUseCase {
       );
     }
 
-    //add verification email
+    const emailAlreadyExist = await this.usersRepository.findByEmail(data.email)
+
+    if(emailAlreadyExist) {
+      throw new AppException(
+        `User with email = ${data.email} already exists`,
+        400,
+        "UserAlreadyExists"
+      );
+    }
 
     const currentDate = new Date();
 
