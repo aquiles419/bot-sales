@@ -22,7 +22,7 @@ export class CreateUserController implements IController {
   async handle(request: IRequest<RequestType>): Promise<any> {
     const { email, password } = request.body;
 
-    const userEmail = this.userRepository.findByEmail(email);
+    const userEmail = await this.userRepository.findByEmail(email);
 
     if (!userEmail) {
       throw new AppException("User not Found", 401, "UserNotFound");
@@ -37,9 +37,9 @@ export class CreateUserController implements IController {
     );
 
     const data = {
-      _id: (await userEmail)._id,
-      name: (await userEmail).name,
-      email: (await userEmail).email,
+      _id: userEmail._id,
+      name:userEmail.name,
+      email: userEmail.email,
       token,
     };
 
