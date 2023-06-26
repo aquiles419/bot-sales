@@ -12,17 +12,30 @@ export class ListExpensesByTripId implements IListExpensesByTripId {
     private tripsRepository: ITripsRepository
   ) {}
 
-  async execute(id: string): Promise<Trip> {
+  async execute(id: string): Promise<any> {
     const trip = await this.tripsRepository.findTripByIdAndPopulateExpenses(id);
 
-    if (!trip) {
+    if (
+      !trip ||
+      !Array.isArray(trip) ||
+      trip.length === 0 ||
+      !trip[0].expenses ||
+      !Array.isArray(trip[0].expenses)
+    ) {
       throw new AppException(
-        `trip with id ${id} not found`,
+        "Expenses not found for the trip",
         404,
-        "trip not found"
+        "TRIP_EXPENSES_NOT_FOUND"
       );
     }
 
-    return trip;
+    const total_value = trip[0].expenses.reduce((accumulator, expense) => {
+      return accumulator + expense.value;
+    }, 0);
+
+    return {
+      trip: trip,
+      total_value: total_value,
+    };
   }
 }
