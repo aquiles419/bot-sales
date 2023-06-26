@@ -95,7 +95,13 @@ export class MongoTripsRepository implements ITripsRepository {
           as: "expenses",
         },
       },
+      {
+        $project: {
+          expenses: 1,
+        },
+      },
     ]);
+
     return trip;
   }
 }
