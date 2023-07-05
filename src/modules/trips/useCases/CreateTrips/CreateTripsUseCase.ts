@@ -33,6 +33,10 @@ export class CreateTripsUseCase {
       description: data.description,
       travelers: data.travelers,
       expenses: data.expenses,
+      lat: data.lat || null,
+      long: data.long || null,
+      start_trip: data.start_trip || null,
+      end_trip: data.end_trip || null,
       created_at: data.created_at || currentDate,
       updated_at: data.updated_at || currentDate,
     };

@@ -39,7 +39,19 @@ export class Trip {
   public expenses: IExpensesDTO[];
 
   @prop()
+  public start_trip: Date;
+
+  @prop()
+  public lat: Date;
+
+  @prop()
+  public long: Date;
+
+  @prop()
   public created_at: Date;
+
+  @prop()
+  public end_trip: Date;
 
   @prop()
   public updated_at: Date;
