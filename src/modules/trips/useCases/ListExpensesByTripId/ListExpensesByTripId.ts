@@ -33,9 +33,17 @@ export class ListExpensesByTripId implements IListExpensesByTripId {
       return accumulator + expense.value;
     }, 0);
 
+    const debtors = trip[0].expenses.reduce((accumulator, expense) => {
+      return accumulator.concat(expense.debtors);
+    }, []);
+
+    const totalDebtors = debtors.length;
+    const valuePerPerson = total_value / totalDebtors;
+
     return {
       trip: trip,
       total_value: total_value,
+      value_per_person: valuePerPerson,
     };
   }
 }
