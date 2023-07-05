@@ -12,7 +12,7 @@ export class UpdateUsersController implements IController {
 
   async handle(request: IRequest): Promise<IResponse> {
     const { id } = request.params;
-    const { name, email, trips, user_photo, password } = request.body;
+    const { name, email, trips, user_photo, password, pix_key } = request.body;
 
     const updatedUser = await this.updateUsersUseCase.execute({
       _id: id,
@@ -21,6 +21,7 @@ export class UpdateUsersController implements IController {
       trips,
       user_photo,
       password,
+      pix_key,
     });
 
     return ok(updatedUser);

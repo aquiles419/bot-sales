@@ -23,9 +23,11 @@ export class CreateUsersUseCase {
       );
     }
 
-    const emailAlreadyExist = await this.usersRepository.findByEmail(data.email)
+    const emailAlreadyExist = await this.usersRepository.findByEmail(
+      data.email
+    );
 
-    if(emailAlreadyExist) {
+    if (emailAlreadyExist) {
       throw new AppException(
         `User with email = ${data.email} already exists`,
         400,
@@ -41,6 +43,7 @@ export class CreateUsersUseCase {
       email: data.email,
       password: data.password,
       user_photo: "",
+      pix_key: data.pix_key || null,
       created_at: data.created_at || currentDate,
       updated_at: data.updated_at || currentDate,
     };

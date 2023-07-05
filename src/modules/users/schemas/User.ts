@@ -35,6 +35,9 @@ export class User {
   public password: string;
 
   @prop()
+  public pix_key: string;
+
+  @prop()
   public trips: ITrips[];
 
   @prop()
