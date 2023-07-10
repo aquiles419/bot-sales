@@ -14,6 +14,7 @@ import { UpdateUsersController } from "../controllers/UpdateUsers/UpdateUsersCon
 import multerConfig from "../../../config/multerConfig";
 import { LoginController } from "../controllers/LoginController/LoginController";
 import { UploadPhotoController } from "../controllers/UploadPhoto/UploadPhotoController";
+import { ListUserByIdController } from "../controllers/ListUserById";
 
 const createUsersController = ExpressControllerAdapter(
   container.resolve(CreateUserController)
@@ -31,6 +32,10 @@ const updatedUsers = ExpressControllerAdapter(
   container.resolve(UpdateUsersController)
 );
 
+const listUserById = ExpressControllerAdapter(
+  container.resolve(ListUserByIdController)
+);
+
 const usersRoutes = Router();
 const upload = multer(multerConfig);
 
@@ -41,6 +46,7 @@ usersRoutes.use(auth);
 
 usersRoutes.get("/users", listUsersController);
 usersRoutes.put("/users/:id", updatedUsers);
+usersRoutes.get("/users/:id", listUserById);
 
 usersRoutes.post(
   "/users/photo",

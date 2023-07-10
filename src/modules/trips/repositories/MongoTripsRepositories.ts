@@ -2,7 +2,11 @@ import { getModelForClass, ReturnModelType } from "@typegoose/typegoose";
 
 import { Trip } from "../schemas/Trip";
 import { ITripsRepository } from "./ITripsRepository";
-import { ICreateTripsDTO, IListTripsFilters } from "../dtos/ITripsDTO";
+import {
+  ICreateTripsDTO,
+  IListTripsFilters,
+  IUpdateTripsDTO,
+} from "../dtos/ITripsDTO";
 
 export class MongoTripsRepository implements ITripsRepository {
   private ormRepository: ReturnModelType<typeof Trip>;
@@ -56,8 +60,8 @@ export class MongoTripsRepository implements ITripsRepository {
     return this.ormRepository.find();
   }
 
-  public async save(user: Trip): Promise<Trip | null> {
-    return this.ormRepository.findOneAndUpdate({ _id: user._id }, user, {
+  public async save(trips: IUpdateTripsDTO): Promise<Trip | null> {
+    return this.ormRepository.findOneAndUpdate({ _id: trips._id }, trips, {
       new: true,
     });
   }
