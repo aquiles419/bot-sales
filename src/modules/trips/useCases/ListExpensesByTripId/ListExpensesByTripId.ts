@@ -23,7 +23,7 @@ export class ListExpensesByTripId implements IListExpensesByTripId {
       throw new AppException(
         "Expenses not found for the trip",
         404,
-        "TRIP_EXPENSES_NOT_FOUN"
+        "TRIP_EXPENSES_NOT_FOUND"
       );
     }
 
