@@ -54,4 +54,67 @@ export class MongoUsersRepository implements IUsersRepository {
       { new: true }
     );
   }
+
+  public async findExpensesByUserId(userId: string): Promise<any> {
+    const user = await this.ormRepository.aggregate([
+      {
+        $match: {
+          _id: userId,
+        },
+      },
+      {
+        $lookup: {
+          from: "trips",
+          localField: "trips",
+          foreignField: "_id",
+          as: "trips",
+        },
+      },
+      {
+        $unwind: {
+          path: "$trips",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $lookup: {
+          from: "expenses",
+          localField: "trips.expenses",
+          foreignField: "_id",
+          as: "trips.expenses",
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          "trips._id": 1,
+          "trips.name": 1,
+          "trips.description": 1,
+          "trips.expenses": {
+            $map: {
+              input: "$trips.expenses",
+              as: "expense",
+              in: {
+                _id: "$$expense._id",
+                description: "$$expense.description",
+                value: "$$expense.value",
+                payer: "$$expense.payer",
+                debtors: "$$expense.debtors",
+              },
+            },
+          },
+        },
+      },
+      {
+        $group: {
+          _id: "$_id",
+          name: { $first: "$name" },
+          trips: { $push: "$trips" },
+        },
+      },
+    ]);
+
+    return user[0];
+  }
 }
