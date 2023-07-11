@@ -95,6 +95,40 @@ export class MongoTripsRepository implements ITripsRepository {
                 },
               },
             },
+            {
+              $lookup: {
+                from: "users",
+                localField: "payer",
+                foreignField: "_id",
+                as: "payer",
+              },
+            },
+            {
+              $lookup: {
+                from: "users",
+                localField: "debtors",
+                foreignField: "_id",
+                as: "debtors",
+              },
+            },
+            {
+              $project: {
+                _id: 1,
+                description: 1,
+                value: 1,
+                payer: {
+                  name: 1,
+                  email: 1,
+                },
+                debtors: {
+                  name: 1,
+                  email: 1,
+                },
+                category_id: 1,
+                created_at: 1,
+                updated_at: 1,
+              },
+            },
           ],
           as: "expenses",
         },
