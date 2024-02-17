@@ -1,6 +1,0 @@
-services:
-  mongo:
-    image: mongo:5
-    container_name: api-trips-mongo
-    ports:
-      - 27017:27017
